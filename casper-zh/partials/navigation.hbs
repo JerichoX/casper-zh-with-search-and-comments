@@ -1,0 +1,46 @@
+<div class="nav">
+    <h3 class="nav-title">菜单</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">关闭</span>
+    </a>
+    <form id="search-form">
+        <input type="search" id="search-field" onchange="QuickDel();" />
+        <input id="search-button" type="image" src="/assets/imgs/search.png" width=25 />
+        <input id="search-quick-del" type="image" src="/assets/imgs/quickdel.png" onclick="clearResults();" style="display:none;" />
+    </form>
+    <section id="results"></section>
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/assets/ghostHunter/dist/jquery.ghostHunter.js"></script>
+
+    <script>
+        quickDel = document.getElementById("search-quick-del");
+        searchInput = document.getElementById("search-field");
+        var searchField = $("#search-field").ghostHunter({
+            results     : "#results",
+        });
+        function clearResults() {
+            searchField.clear();
+            quickDel.style.display="none";
+        }
+        $(function(){
+            $("#search-submit").click(function() {
+                document.formtest.submit();
+            });
+        })
+        function QuickDel() {
+            if(searchInput.value==null) {
+                quickDel.style.display="none";
+            }else if(searchInput.value!=null){
+                quickDel.style.display="block";
+            }
+        }
+    </script>
+    <ul>
+        {{#foreach navigation}}
+            <li class="nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
+    </ul>
+    <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/index.rss">订阅</a>
+</div>
+<span class="nav-cover"></span>
