@@ -1,6 +1,6 @@
 Ghost默认中文主题，添加了评论和搜索功能
 
-##安装
+#安装
 
 1. 将casper-zh文件夹放入Ghost项目的theme文件夹中
 2. 申请[Github Application](https://github.com/settings/applications/new)
